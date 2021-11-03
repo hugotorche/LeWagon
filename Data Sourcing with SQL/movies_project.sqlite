@@ -1,0 +1,58 @@
+-- Question 1: Can you get all data about movies?
+SELECT * FROM movies;
+
+-- Question 2: How do you get all data about directors?
+SELECT * FROM directors;
+
+-- Question 3: Check how many movies are in iMDB.
+SELECT count(*) FROM movies;
+
+-- Question 4: Find these 3 directors: James Cameron ; Luc Besson ; John Woo
+SELECT * FROM directors
+WHERE name in ('James Cameron','Luc Besson','John Woo');
+
+-- Question 5: Find all directors with name starting with Steven.
+SELECT * FROM directors
+WHERE name like 'Steven%';
+
+-- Question 6: Count female directors.
+SELECT count(*) FROM directors
+WHERE gender = 1;
+
+-- Question 7: Find the name of the 10th first women directors?
+SELECT name FROM directors
+WHERE gender = 1 limit 10;
+
+-- Question 8: What are the 3 most popular movies?
+SELECT * FROM movies
+order by popularity DESC
+limit 3;
+
+-- Question 9: What are the 3 most bankable movies (with the highest revenue)?
+SELECT * FROM movies
+order by revenue DESC
+limit 3;
+
+-- Question 10: What is the most awarded average vote since the January 1st, 2000?
+SELECT * FROM movies
+where release_date > '2000-01-01'
+order by vote_average DESC
+limit 1;
+
+-- Question 11: Which movie(s) were directed by Brenda Chapman?
+SELECT * FROM movies m
+JOIN directors d on m.director_id = d.id
+where d.name = 'Brenda Chapman';
+
+-- Question 12: Which director made the most movies?
+SELECT d.name, count(m.id) nb_movies FROM directors d, movies m
+where d.id = m.director_id
+group by d.name order by nb_movies desc 
+limit 1;
+
+-- Question 13: Which director is the most bankable?
+select d.name, SUM(m.vote_count) as votes 
+from directors d, movies m
+where d.id = m.director_id
+group by d.name order by votes DESC
+limit 1;

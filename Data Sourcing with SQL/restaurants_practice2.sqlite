@@ -1,0 +1,11 @@
+-- Question 1: Can you get all the reviews of “Chez Franz”?
+SELECT *
+FROM reviews 
+JOIN restaurants ON reviews.restaurant_id = restaurants.id
+WHERE name = 'Chez Franz';
+
+-- Question 2: How many reviews are about Paris’ restaurants ?
+SELECT *
+FROM reviews 
+JOIN restaurants ON reviews.restaurant_id = restaurants.id
+WHERE city = 'Paris';

@@ -1,0 +1,20 @@
+-- Question 1: How do you get all data about restaurants?
+SELECT * FROM restaurants;
+
+-- Question 2: Can you get all Japanese restaurants?
+SELECT * FROM restaurants WHERE cuisine_style = 'Japanese';
+
+-- Question 3: Can you get all restaurants called ‘Cafe…’ in Paris?
+SELECT * FROM restaurants WHERE name LIKE 'Cafe%' and city = 'Paris';
+
+-- Question 4: Can you get all restaurants ordered by rating?
+SELECT * FROM restaurants ORDER BY rating;
+
+-- Question 5: Can you count how many restaurants are in this DB?
+SELECT count(*) FROM restaurants;
+
+-- Question 6: Can you count all restaurants per city?
+SELECT city, count(*) as counter FROM restaurants group by city;
+
+-- Question 7: Can you count all restaurants per city and sort them?
+SELECT city, count(*) as counter FROM restaurants group by city ORDER BY counter desc;
